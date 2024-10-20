@@ -33,8 +33,7 @@ function TaskList({ tasks, onUpdateTask }) {
     setEditedTask({ task_name: "", estimation: "" });
   };
 
-  return (
-   
+  return ( 
     <div className="task-list m-5 rounded-xl border-2 shadow-lg ">
          <ScrollArea className="p-3 h-96 overflow-hidden">
       {tasks.map((task, index) => (
