@@ -47,7 +47,7 @@ function TaskList({ tasks, onUpdateTask }) {
                 <Input
                   id={`task_name_${index}`}
                   name="task_name"
-                  value={editedTask.task_name}
+                  value={editedTask.subtask}
                   onChange={handleInputChange}
                   className="border-2 border-gray-300"
                 />
@@ -69,7 +69,7 @@ function TaskList({ tasks, onUpdateTask }) {
               // View Mode
               <div className="flex justify-between items-center ">
                 <div>
-                  <p><strong>Task:</strong> {task.task_name}</p>
+                  <p><strong>Task:</strong> {task.subtask}</p>
                   <p><strong>Estimation:</strong> {task.estimation}</p>
                 </div>
                 <Button onClick={() => handleEdit(index)} className="bg-blue-500 text-white">Edit</Button>

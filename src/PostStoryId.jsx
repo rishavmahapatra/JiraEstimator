@@ -8,7 +8,7 @@ function PostStoryId({ onStorySubmit }) {
   const [storyId, setStoryId] = useState("");
   const [error, setError] = useState(null);
 //   const url = "https://run.mocky.io/v3/b00954cf-49fe-456f-8d05-412b1a723fe5" ;
-  const url = "https://run.mocky.io/v3/21e3fdef-2ffc-4553-8d33-b64e112ac42b";
+  const url = "http://localhost:8000/story_id";
   const handleInputChange = (e) => {
     setStoryId(e.target.value);
   };
@@ -19,7 +19,14 @@ function PostStoryId({ onStorySubmit }) {
 
     try {
       // Fetch data from the server using the storyId
-      const response = await fetch(`${url}/${storyId}`);
+      const response = await fetch(`${url}`, {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ story_id: storyId }),
+      });
 
       if (!response.ok) {
         throw new Error(`Error: ${response.status} - ${response.statusText}`);
