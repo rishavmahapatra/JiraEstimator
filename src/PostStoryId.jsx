@@ -3,6 +3,7 @@ import { Button } from "./components/ui/button";
 import { Card, CardContent } from "./components/ui/card";
 import { Input } from "./components/ui/input";
 import { Label } from "./components/ui/label";
+import { API_URL } from "./config";
 
 function PostStoryId({ onStorySubmit }) {
   const [storyId, setStoryId] = useState("");
@@ -19,6 +20,7 @@ function PostStoryId({ onStorySubmit }) {
 
     try {
       // Fetch data from the server using the storyId
+<<<<<<< Updated upstream
       const response = await fetch(`${url}`, {
         method: "POST",
         headers: {
@@ -27,6 +29,9 @@ function PostStoryId({ onStorySubmit }) {
         },
         body: JSON.stringify({ story_id: storyId }),
       });
+=======
+      const response = await fetch(`${API_URL}/${storyId}`);
+>>>>>>> Stashed changes
 
       if (!response.ok) {
         throw new Error(`Error: ${response.status} - ${response.statusText}`);
