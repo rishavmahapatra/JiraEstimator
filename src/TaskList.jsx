@@ -7,7 +7,7 @@ import { ScrollArea } from "./components/ui/scroll-area";
 
 function TaskList({ tasks, onUpdateTask }) {
   const [editIndex, setEditIndex] = useState(null); // Track which task is being edited
-  const [editedTask, setEditedTask] = useState({ task_name: "", estimation: "" });
+  const [editedTask, setEditedTask] = useState({ subtask: "", estimation: "" });
 
   // Start editing a task
   const handleEdit = (index) => {
@@ -30,8 +30,11 @@ function TaskList({ tasks, onUpdateTask }) {
   // Cancel editing and revert to the original values
   const handleCancel = () => {
     setEditIndex(null);
-    setEditedTask({ task_name: "", estimation: "" });
+    setEditedTask({ subtask: "", estimation: "" });
   };
+//   const handleSubmit = async (e) =>{
+//     e.preventDefault();
+//   }
 
   return ( 
     <div className="task-list m-5 rounded-xl border-2 shadow-lg ">
@@ -42,10 +45,10 @@ function TaskList({ tasks, onUpdateTask }) {
             {editIndex === index ? (
               // Edit Mode
               <div className="grid gap-2">
-                <Label htmlFor={`task_name_${index}`}>Task Name</Label>
+                <Label htmlFor={`subtask_${index}`}>Task Name</Label>
                 <Input
-                  id={`task_name_${index}`}
-                  name="task_name"
+                  id={`subtask_${index}`}
+                  name="subtask"
                   value={editedTask.subtask}
                   onChange={handleInputChange}
                   className="border-2 border-gray-300"
