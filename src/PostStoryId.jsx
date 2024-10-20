@@ -20,7 +20,7 @@ function PostStoryId({ onStorySubmit }) {
 
     try {
       // Fetch data from the server using the storyId
-      const response = await fetch(`${API_URL}`, {
+      const response = await fetch(`${API_URL}/${story_id}`, {
         method: "POST",
         headers: {
           "Accept": "application/json",
