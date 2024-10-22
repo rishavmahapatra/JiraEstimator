@@ -7,10 +7,12 @@ import { Button } from "./components/ui/button";
 function App() {
   const [tasks, setTasks] = useState([]);
   const [storyDescription, setStoryDescription] = useState(null);
+  const [storyID, setStoryId] = useState(null);
 
   const handleStorySubmit = (storyData) => {
     setTasks(storyData.subtasks);
     setStoryDescription(storyData.description);
+    setStoryId(storyData.story_id);
   };
 
   const handleUpdateTask = (index, updatedTask) => {
@@ -27,7 +29,7 @@ function App() {
       {storyDescription && (<StoryDesc description={storyDescription}/>)}
       </div>
       <div className="Right Column">
-      {tasks.length>0 && (<TaskList tasks={tasks} onUpdateTask={handleUpdateTask} />)}
+      {tasks.length>0 && (<TaskList tasks={tasks} storyDescription={storyDescription} storyID={storyID} onUpdateTask={handleUpdateTask} />)}
       </div>
       </div>
     </div>

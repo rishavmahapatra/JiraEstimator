@@ -4,10 +4,13 @@ import { Input } from "./components/ui/input";
 import { Card, CardContent } from "./components/ui/card";
 import { Label } from "./components/ui/label";
 import { ScrollArea } from "./components/ui/scroll-area";
+import { API_URL } from "./config";
+import { Alert, AlertDescription } from "./components/ui/alert";
 
-function TaskList({ tasks, onUpdateTask }) {
+function TaskList({ tasks, onUpdateTask, storyDescription, storyID }) {
   const [editIndex, setEditIndex] = useState(null); // Track which task is being edited
   const [editedTask, setEditedTask] = useState({ subtask: "", estimation: "" });
+  const [responseData, setResponseData] = useState(null);
 
   // Start editing a task
   const handleEdit = (index) => {
@@ -32,9 +35,37 @@ function TaskList({ tasks, onUpdateTask }) {
     setEditIndex(null);
     setEditedTask({ subtask: "", estimation: "" });
   };
-//   const handleSubmit = async (e) =>{
-//     e.preventDefault();
-//   }
+  const handleSubmit = async (e) =>{
+    e.preventDefault();
+    const requestBody = {
+      status: 200,
+      story_id: storyID,
+      description: storyDescription,
+      subtasks: tasks,
+    };
+
+    try {
+      const response = await fetch(`${API_URL}/create_subtasks`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Error: ${response.status} - ${response.statusText} - ${errorText}`);
+      }
+
+      const data = await response.json();
+      setResponseData(data);
+      alert(`${responseData.message}`);
+      console.log('Response data:', data);
+    } catch (err) {
+      console.error('Error during fetch:', err.message || err);
+    }
+  };
 
   return ( 
     <div className="task-list m-5 rounded-xl border-2 shadow-lg ">
@@ -81,7 +112,7 @@ function TaskList({ tasks, onUpdateTask }) {
         </Card>
       ))}
     </ScrollArea> 
-    <Button className="m-5 mx-auto w-1/3 block">Save</Button>
+    <Button className="m-5 mx-auto w-1/3 block" onClick={handleSubmit}>Save</Button>
     </div>
    
   );

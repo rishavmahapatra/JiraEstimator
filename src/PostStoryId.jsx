@@ -8,8 +8,6 @@ import { API_URL } from "./config";
 function PostStoryId({ onStorySubmit }) {
   const [storyId, setStoryId] = useState("");
   const [error, setError] = useState(null);
-//   const url = "https://run.mocky.io/v3/b00954cf-49fe-456f-8d05-412b1a723fe5" ;
-//   const url = "http://localhost:8000/story_id";
   const handleInputChange = (e) => {
     setStoryId(e.target.value);
   };
