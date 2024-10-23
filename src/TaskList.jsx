@@ -60,7 +60,7 @@ function TaskList({ tasks, onUpdateTask, storyDescription, storyID }) {
 
       const data = await response.json();
       setResponseData(data);
-      alert(`${responseData.message}`);
+      alert(`${data.message}`);
       console.log('Response data:', data);
     } catch (err) {
       console.error('Error during fetch:', err.message || err);
@@ -68,7 +68,7 @@ function TaskList({ tasks, onUpdateTask, storyDescription, storyID }) {
   };
 
   return ( 
-    <div className="task-list m-5 rounded-xl border-2 shadow-lg ">
+    <div className="task-list m-5 rounded-xl border-2 shadow-lg bg-teal-500">
          <ScrollArea className="p-3 h-96 overflow-hidden">
       {tasks.map((task, index) => (
         <Card key={index} className="m-3 p-3 bg-gradient-to-l from-[#a8ff78] to-[#78ffd6] shadow-lg">

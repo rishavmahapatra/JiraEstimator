@@ -21,8 +21,8 @@ function App() {
   };
 
   return (
-    <div className="max-h-screen">
-      <h1 className='text-center font-extrabold text-3xl m-5'>Mr. Agile - Jira Estimator</h1>
+    <div className="max-h-screen ">
+      <h1 className='text-center font-extrabold text-3xl m-5'>Jira Estimator</h1>
       <div className="grid grid-cols-2 gap-3 mt-10">
       <div className="Left Column ">
       <PostStoryId onStorySubmit={handleStorySubmit} />

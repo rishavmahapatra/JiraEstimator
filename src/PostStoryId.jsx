@@ -8,6 +8,7 @@ import { API_URL } from "./config";
 function PostStoryId({ onStorySubmit }) {
   const [storyId, setStoryId] = useState("");
   const [error, setError] = useState(null);
+  const [token,setToken] = useState(null);
   const handleInputChange = (e) => {
     setStoryId(e.target.value);
   };
@@ -46,6 +47,15 @@ function PostStoryId({ onStorySubmit }) {
       <Card className="m-5 bg-gradient-to-l from-[#a8ff78] to-[#78ffd6]  shadow-lg">
         <CardContent>
           <form onSubmit={handleSubmit} className="mt-6 grid gap-3">
+          <Label htmlFor="token">Jira API Key:</Label>
+            <Input
+              className="border border-black"
+              id="token"
+              type="password"
+              value={token}
+              onChange={(e)=> setToken(e.target.value)}
+              required
+            />
             <Label htmlFor="storyid">Story ID:</Label>
             <Input
               className="border border-black"
