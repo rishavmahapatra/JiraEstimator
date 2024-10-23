@@ -63,4 +63,5 @@
   body {
     @apply bg-teal-300 text-foreground;
   }
+  /* fade-in */
 }

@@ -8,7 +8,8 @@ import { API_URL } from "./config";
 function PostStoryId({ onStorySubmit }) {
   const [storyId, setStoryId] = useState("");
   const [error, setError] = useState(null);
-  const [token,setToken] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [token,setToken] = useState("");
   const handleInputChange = (e) => {
     setStoryId(e.target.value);
   };
@@ -16,6 +17,7 @@ function PostStoryId({ onStorySubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null); // Clear previous error
+    setLoading(true);
 
     try {
       // Fetch data from the server using the storyId
@@ -39,6 +41,9 @@ function PostStoryId({ onStorySubmit }) {
     } catch (err) {
       console.error("API fetch error:", err);
       setError("Failed to fetch data. Please check the story ID or try again later.");
+    }
+    finally{
+      setLoading(false);
     }
   };
 
@@ -65,9 +70,9 @@ function PostStoryId({ onStorySubmit }) {
               onChange={handleInputChange}
               required
             />
-            <Button className="w-1/2 mx-auto" type="submit">SUBMIT</Button>
+            {loading ? (<p className="text-black text-center font-bold mt-2">Loading Story details and estimates...</p>) : (<Button className="w-1/2 mx-auto" type="submit">SUBMIT</Button>)}
           </form>
-          {error && <p className="text-red-500 mt-2">{error}</p>}
+          {error && <p className="text-red-500 text-center font-bold mt-2">{error}</p>}
         </CardContent>
       </Card>
     </div>

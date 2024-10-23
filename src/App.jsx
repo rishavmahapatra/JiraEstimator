@@ -23,7 +23,7 @@ function App() {
   return (
     <div className="max-h-screen ">
       <h1 className='text-center font-extrabold text-3xl m-5'>Jira Estimator</h1>
-      <div className="grid grid-cols-2 gap-3 mt-10">
+      <div className="grid grid-cols-2 gap-3 mt-20">
       <div className="Left Column ">
       <PostStoryId onStorySubmit={handleStorySubmit} />
       {storyDescription && (<StoryDesc description={storyDescription}/>)}
@@ -32,6 +32,7 @@ function App() {
       {tasks.length>0 && (<TaskList tasks={tasks} storyDescription={storyDescription} storyID={storyID} onUpdateTask={handleUpdateTask} />)}
       </div>
       </div>
+      <h1 className='fixed left-0 right-0 bottom-0 text-center font-bold text-xl m-5'>Made with ❤️ by Rishav</h1>
     </div>
   );
 }

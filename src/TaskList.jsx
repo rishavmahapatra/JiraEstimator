@@ -11,6 +11,7 @@ function TaskList({ tasks, onUpdateTask, storyDescription, storyID }) {
   const [editIndex, setEditIndex] = useState(null); // Track which task is being edited
   const [editedTask, setEditedTask] = useState({ subtask: "", estimation: "" });
   const [responseData, setResponseData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   // Start editing a task
   const handleEdit = (index) => {
@@ -37,6 +38,7 @@ function TaskList({ tasks, onUpdateTask, storyDescription, storyID }) {
   };
   const handleSubmit = async (e) =>{
     e.preventDefault();
+    setLoading(true);
     const requestBody = {
       status: 200,
       story_id: storyID,
@@ -64,6 +66,9 @@ function TaskList({ tasks, onUpdateTask, storyDescription, storyID }) {
       console.log('Response data:', data);
     } catch (err) {
       console.error('Error during fetch:', err.message || err);
+    }
+    finally{
+      setLoading(false);
     }
   };
 
@@ -112,7 +117,7 @@ function TaskList({ tasks, onUpdateTask, storyDescription, storyID }) {
         </Card>
       ))}
     </ScrollArea> 
-    <Button className="m-5 mx-auto w-1/3 block" onClick={handleSubmit}>Save</Button>
+    {loading ? (<p className="text-black text-center font-bold m-6">Savng Story subtasks and estimates...</p>) : (<Button className="m-5 mx-auto w-1/3 block" onClick={handleSubmit}>Save</Button>)}
     </div>
    
   );
